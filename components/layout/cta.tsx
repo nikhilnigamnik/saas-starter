@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 export function Cta() {
   return (
     <section>
-      <div className="max-w-4xl mx-auto border-x border-b border-dotted">
+      <div className="max-w-4xl mx-auto border-x border-b border-dotted ">
         <div className="text-center space-y-4 py-12 px-4">
           <h2 className="md:text-3xl text-xl font-medium text-foreground">
             Ready to improve your <span className="text-brand">SEO rankings?</span>

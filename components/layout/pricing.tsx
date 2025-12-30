@@ -45,7 +45,7 @@ export function Pricing() {
     <section id="pricing">
       <div className="max-w-4xl mx-auto border-x border-dotted">
         <div className="pt-12">
-          <div className="text-center space-y-4 mb-12">
+          <div className="text-center space-y-4 mb-12 px-4">
             <h2 className="md:text-3xl text-xl font-medium text-foreground">
               Simple, transparent <span className="text-brand">pricing</span>
             </h2>
