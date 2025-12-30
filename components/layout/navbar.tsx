@@ -7,14 +7,14 @@ export function Navbar() {
     <nav className="sticky top-0 z-50">
       <div className="max-w-4xl mx-auto flex py-4 items-center justify-between px-4 border border-dotted backdrop-blur-xl bg-background/50">
         <Link href="/" className="flex items-center space-x-1">
-          <img
+          <Image
             src="/icon.png"
             alt="BetterSeo"
             width={20}
             height={20}
             className="hidden dark:block"
           />
-          <img
+          <Image
             src="/icon-dark.png"
             alt="BetterSeo"
             width={20}

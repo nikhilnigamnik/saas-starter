@@ -88,7 +88,7 @@ export default function Page() {
             className="hidden dark:block"
           />
           <Image
-            src="/icon.png"
+            src="/icon-dark.png"
             alt="BetterSeo"
             width={30}
             height={30}

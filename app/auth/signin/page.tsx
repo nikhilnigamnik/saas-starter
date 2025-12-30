@@ -76,13 +76,12 @@ export default function Page() {
             className="hidden dark:block"
           />
           <Image
-            src="/icon.png"
+            src="/icon-dark.png"
             alt="BetterSeo"
             width={30}
             height={30}
             className="block dark:hidden"
           />
-
           <p className="text-sm text-muted-foreground">Sign in to your account</p>
         </div>
         <form onSubmit={handleSignIn} className="space-y-4 w-full">
