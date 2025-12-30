@@ -9,6 +9,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { z } from 'zod';
 import { IconLoader } from '@tabler/icons-react';
+import Image from 'next/image';
 
 const signUpSchema = z.object({
   name: z.string().min(1, 'Name is required').min(2, 'Name must be at least 2 characters'),
@@ -78,8 +79,21 @@ export default function Page() {
   return (
     <section className="flex flex-col items-center justify-center h-screen px-4">
       <div className="max-w-sm w-full mx-auto space-y-6">
-        <div className="space-y-1">
-          <h4 className="text-base font-medium">BetterSeo</h4>
+        <div className="space-y-2">
+          <Image
+            src="/icon.png"
+            alt="BetterSeo"
+            width={30}
+            height={30}
+            className="hidden dark:block"
+          />
+          <Image
+            src="/icon.png"
+            alt="BetterSeo"
+            width={30}
+            height={30}
+            className="block dark:hidden"
+          />
           <p className="text-sm text-muted-foreground">Sign up to your account</p>
         </div>
         <form onSubmit={handleSignUp} className="space-y-4 w-full">
