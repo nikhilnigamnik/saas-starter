@@ -85,3 +85,14 @@ export const upsertSubscription = async (
     update: data,
   });
 };
+
+export const isUsageExceeded = async (userId: string) => {
+  const usage = await prisma.usage.findUnique({
+    where: { userId },
+  });
+
+  if (!usage) {
+    return false; // Usage not found, so it's not exceeded
+  }
+  return usage.currentUsage >= usage.usageLimit;
+};

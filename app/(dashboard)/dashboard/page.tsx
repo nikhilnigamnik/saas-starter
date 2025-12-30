@@ -1,13 +1,60 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { IconLoader } from '@tabler/icons-react';
+import {
+  SEOEmptyState,
+  SEOMissingElements,
+  SEOPresentElements,
+  SEORecommendations,
+  SEOReportDisplay,
+  SEOReportForm,
+  SEOReportHeader,
+} from '@/components/layout/seo';
 import React, { useState } from 'react';
+import { toast } from 'sonner';
+
+interface SEOReport {
+  url: string;
+  present: {
+    title: boolean;
+    metaDescription: boolean;
+    metaKeywords: boolean;
+    ogTitle: boolean;
+    ogDescription: boolean;
+    ogImage: boolean;
+    twitterCard: boolean;
+    canonical: boolean;
+    robots: boolean;
+    h1: boolean;
+    h2: boolean;
+    lang: boolean;
+    viewport: boolean;
+    structuredData: boolean;
+  };
+  data: {
+    title?: string;
+    metaDescription?: string;
+    metaKeywords?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    twitterCard?: string;
+    canonical?: string;
+    robots?: string;
+    h1Count: number;
+    h2Count: number;
+    lang?: string;
+    viewport?: string;
+    imagesWithoutAlt: number;
+    totalImages: number;
+  };
+  missing: string[];
+  recommendations: string[];
+}
 
 export default function Page() {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const [report, setReport] = useState<SEOReport | null>(null);
 
   async function handleGenerateReport(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -15,17 +62,32 @@ export default function Page() {
       setLoading(true);
       const response = await fetch('/api/report', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ url }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to generate report');
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || 'Failed to generate report';
+
+        if (response.status === 402) {
+          toast.error(errorMessage);
+        } else {
+          toast.error(errorMessage);
+        }
+        return;
       }
 
       const data = await response.json();
       console.log(data);
+      setReport(data);
     } catch (error) {
       console.error('Failed to generate report', error);
+      toast.error('Error', {
+        description: 'An unexpected error occurred. Please try again.',
+      });
     } finally {
       setLoading(false);
     }
@@ -33,27 +95,29 @@ export default function Page() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-2">
-        <h3>Report Summary</h3>
-        <form onSubmit={handleGenerateReport} className="flex items-center gap-2">
-          <Input
-            placeholder="Enter website URL"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            required
-            disabled={loading}
-            name="url"
-            type="url"
+      <SEOReportForm
+        url={url}
+        loading={loading}
+        onUrlChange={setUrl}
+        onSubmit={handleGenerateReport}
+      />
+      {report ? (
+        <div className="space-y-4 pb-4">
+          <SEOReportHeader
+            url={report.url}
+            onClear={() => {
+              setReport(null);
+              setUrl('');
+            }}
           />
-          <Button type="submit" disabled={loading}>
-            {loading ? <IconLoader className="size-4 animate-spin" /> : 'Generate Report'}
-          </Button>
-        </form>
-      </div>
-      <div className="p-4 bg-secondary rounded-lg text-center flex items-center justify-center flex-col min-h-[calc(100vh-200px)]">
-        <p className="mb-2 text-xs">No report found</p>
-        <p className="text-muted-foreground text-xs">generate a report to get started</p>
-      </div>
+          <SEOPresentElements present={report.present} />
+          <SEOMissingElements missing={report.missing} />
+          <SEORecommendations recommendations={report.recommendations} />
+          <SEOReportDisplay report={report} />
+        </div>
+      ) : (
+        <SEOEmptyState />
+      )}
     </div>
   );
 }

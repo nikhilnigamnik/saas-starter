@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/provider/providers';
+import { Toaster } from 'sonner';
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
@@ -96,6 +97,7 @@ export default function RootLayout({
         suppressContentEditableWarning
       >
         <Providers>{children}</Providers>
+        <Toaster closeButton />
       </body>
     </html>
   );
