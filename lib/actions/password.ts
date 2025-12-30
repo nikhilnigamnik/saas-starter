@@ -11,10 +11,14 @@ export async function setPassword(newPassword: string) {
     });
 
     return { success: true };
-  } catch (error: any) {
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return {
+        error: error.message,
+      };
+    }
     return {
-      error: error?.message || 'Failed to set password. Please try again.',
+      error: 'Failed to set password. Please try again.',
     };
   }
 }
-

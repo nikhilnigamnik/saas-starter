@@ -7,6 +7,7 @@ import { ChangePassword } from '@/components/layout';
 import { setPassword } from '@/lib/actions/password';
 import Image from 'next/image';
 import React from 'react';
+import { Themetoggle } from '@/components/ui/theme-toggle';
 
 export default async function SettingsPage() {
   const session = await auth.api.getSession({
@@ -66,6 +67,7 @@ export default async function SettingsPage() {
       <div className="border-t pt-6">
         <ChangePassword hasPassword={hasPassword} setPasswordAction={setPassword} />
       </div>
+      <Themetoggle />
     </div>
   );
 }

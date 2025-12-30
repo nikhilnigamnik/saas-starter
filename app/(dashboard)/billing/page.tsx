@@ -15,8 +15,10 @@ export default async function BillingPage() {
     return <div>Please sign in to view your billing.</div>;
   }
 
-  const subscription = await getUserActiveSubscription(session.user.id);
-  const usage = await getUserUsage(session.user.id);
+  const [subscription, usage] = await Promise.all([
+    getUserActiveSubscription(session.user.id),
+    getUserUsage(session.user.id),
+  ]);
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -111,7 +113,9 @@ export default async function BillingPage() {
 
               <div className="pt-2">
                 <Button className="w-fit" asChild>
-                  <Link href="/api/portal">Manage Subscription</Link>
+                  <Link target="_blank" href={`/api/portal?customer_id=${subscription.customerId}`}>
+                    Manage Subscription
+                  </Link>
                 </Button>
               </div>
             </div>
