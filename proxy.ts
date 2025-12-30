@@ -14,8 +14,9 @@ export async function proxy(request: NextRequest) {
   const isPublicRoute =
     pathname === '/' || publicRoutes.some((route) => pathname.startsWith(route));
 
-  // If user is logged in and trying to access public routes, redirect to dashboard
-  if (sessionCookie && isPublicRoute) {
+  // If user is logged in and trying to access auth routes, redirect to dashboard
+  // Allow authenticated users to access the home page (/)
+  if (sessionCookie && publicRoutes.some((route) => pathname.startsWith(route))) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 

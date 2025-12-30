@@ -22,7 +22,7 @@ export function Signout() {
     });
   }
   return (
-    <Button onClick={handleSignOut} disabled={isPending}>
+    <Button onClick={handleSignOut} disabled={isPending} size={'xs'}>
       {isPending ? <IconLoader className="w-4 h-4 animate-spin" /> : 'Signout'}
     </Button>
   );
