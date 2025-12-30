@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SaaS Starter
 
-## Getting Started
+A production-ready SaaS starter template with authentication, subscriptions, usage tracking, and payments.
 
-First, run the development server:
+## Features
+
+- **Authentication** - Email/password auth with Better Auth
+- **Subscriptions** - Full lifecycle management with Dodo Payments
+- **Usage Tracking** - Configurable limits (Free: 2 units, Pro: 20 units)
+- **Billing Portal** - Customer self-service portal
+- **Modern UI** - Tailwind CSS, Radix UI, dark mode
+- **Type Safe** - Full TypeScript + Prisma ORM
+
+## Tech Stack
+
+**Core:** Next.js 16.1.1 (App Router) · TypeScript · PostgreSQL · Prisma  
+**Auth:** Better Auth  
+**Payments:** Dodo Payments  
+**UI:** Tailwind CSS 4 · Radix UI · Framer Motion · next-themes
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 20+
+- PostgreSQL database
+- pnpm (or npm/yarn/bun)
+- Dodo Payments account
+
+### Installation
+
+1. **Clone and install:**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/nikhilnigamnik/saas-starter
+cd saas-starter
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Set up environment variables:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/saas_starter"
+BETTER_AUTH_SECRET="your-secret-key-here"  # Generate: openssl rand -base64 32
+BETTER_AUTH_URL="http://localhost:3000"
+DODO_PAYMENTS_API_KEY="your-dodo-payments-api-key"
+DODO_PAYMENTS_WEBHOOK_KEY="your-dodo-payments-webhook-key"
+DODO_PAYMENTS_RETURN_URL="http://localhost:3000/payment/success"
+```
 
-## Learn More
+3. **Set up database:**
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm prisma generate
+pnpm prisma migrate dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Start dev server:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+Visit [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+├── (dashboard)/     # Protected routes (billing, dashboard, settings, payment)
+├── api/             # API routes (checkout, portal, webhook, auth)
+└── auth/            # Auth pages (signin, signup)
+components/          # React components (layout, ui)
+lib/                 # Utilities (actions, queries, webhooks, auth, prisma)
+prisma/              # Schema and migrations
+```
+
+## Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm prisma studio` - Open database GUI
+- `pnpm prisma migrate dev` - Create migration
+- `pnpm prisma migrate deploy` - Apply migrations (production)
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import in Vercel
+3. Add environment variables
+4. Deploy
+
+### Other Platforms
+
+- Ensure PostgreSQL is accessible
+- Set all environment variables
+- Run `pnpm prisma migrate deploy` before first deployment
+- Configure webhook URL in Dodo Payments: `https://example.com/api/webhook`
+
+## Support
+
+For issues and questions, please open an issue in the repository.

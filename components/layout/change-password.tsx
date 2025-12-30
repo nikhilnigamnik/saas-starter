@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { authClient } from '@/lib/auth-client';
+import { IconLoader } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import { z } from 'zod';
 
@@ -124,10 +125,7 @@ export function ChangePassword({ hasPassword, setPasswordAction }: ChangePasswor
         </p>
       </div>
 
-      <form
-        onSubmit={hasPassword ? handleChangePassword : handleSetPassword}
-        className="space-y-4"
-      >
+      <form onSubmit={hasPassword ? handleChangePassword : handleSetPassword} className="space-y-4">
         {hasPassword && (
           <div className="space-y-2">
             <Label htmlFor="currentPassword">Current Password</Label>
@@ -193,10 +191,15 @@ export function ChangePassword({ hasPassword, setPasswordAction }: ChangePasswor
         )}
 
         <Button type="submit" disabled={loading}>
-          {loading ? 'Processing...' : hasPassword ? 'Change Password' : 'Set Password'}
+          {loading ? (
+            <IconLoader className="size-4 animate-spin" />
+          ) : hasPassword ? (
+            'Change Password'
+          ) : (
+            'Set Password'
+          )}
         </Button>
       </form>
     </div>
   );
 }
-
