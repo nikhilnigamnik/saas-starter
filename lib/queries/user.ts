@@ -40,10 +40,14 @@ export const getUserUsage = async (userId: string) => {
   });
 };
 
-export const updateUserUsage = async (userId: string, data: Prisma.UsageUpdateInput) => {
+export const updateUserUsage = async (userId: string) => {
   return await prisma.usage.update({
     where: { userId },
-    data,
+    data: {
+      currentUsage: {
+        increment: 1,
+      },
+    },
   });
 };
 

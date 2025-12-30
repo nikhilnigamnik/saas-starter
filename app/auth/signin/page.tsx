@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { z } from 'zod';
+import { IconLoader } from '@tabler/icons-react';
 
 const signInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -108,7 +109,7 @@ export default function Page() {
             </div>
           )}
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? <IconLoader className="size-4 animate-spin" /> : 'Sign in'}
           </Button>
         </form>
         <div className="text-center text-xs text-muted-foreground">
