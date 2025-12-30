@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { z } from 'zod';
+import { IconLoader } from '@tabler/icons-react';
 
 const signUpSchema = z.object({
   name: z.string().min(1, 'Name is required').min(2, 'Name must be at least 2 characters'),
@@ -143,7 +144,7 @@ export default function Page() {
             </div>
           )}
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Signing up...' : 'Sign up'}
+            {loading ? <IconLoader className="size-4 animate-spin" /> : 'Sign up'}
           </Button>
         </form>
         <div className="text-center text-xs text-muted-foreground">
