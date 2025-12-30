@@ -1,5 +1,4 @@
 import { Cta, Features, Footer, Hero, Navbar, Pricing } from '@/components/layout';
-import React from 'react';
 
 export default function page() {
   return (

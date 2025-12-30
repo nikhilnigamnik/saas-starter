@@ -8,7 +8,20 @@ export function Footer() {
       <div className="max-w-4xl border-x border-b border-dotted mx-auto py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-foreground">BetterSeo</h3>
+            <img
+              src="/icon.png"
+              alt="BetterSeo"
+              width={30}
+              height={30}
+              className="hidden dark:block"
+            />
+            <img
+              src="/icon-dark.png"
+              alt="BetterSeo"
+              width={30}
+              height={30}
+              className="block dark:hidden"
+            />
             <p className="text-xs text-muted-foreground">
               Optimize your SEO strategy and boost your online presence.
             </p>
