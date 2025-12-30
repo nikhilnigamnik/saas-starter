@@ -1,10 +1,25 @@
 import { betterAuth } from 'better-auth';
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { db } from '@/lib/db';
+import { prismaAdapter } from 'better-auth/adapters/prisma';
+import { prisma } from './prisma';
 
 export const auth = betterAuth({
-  database: drizzleAdapter(db, { provider: 'pg' }),
+  databaseHooks: {
+    account: {
+      create: {
+        after: async (account) => {
+          await prisma.usage.create({
+            data: {
+              userId: account.userId,
+            },
+          });
+        },
+      },
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
+  database: prismaAdapter(prisma, {
+    provider: 'postgresql',
+  }),
 });
