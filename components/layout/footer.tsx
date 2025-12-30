@@ -4,12 +4,12 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="">
+      <div className="max-w-4xl border-x border-b border-dotted mx-auto py-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-foreground">BetterSeo</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Optimize your SEO strategy and boost your online presence.
             </p>
             <Themetoggle />
@@ -17,7 +17,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">Product</h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-xs">
               <li>
                 <Link
                   href="#"
@@ -55,7 +55,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">Company</h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-xs">
               <li>
                 <Link
                   href="#"
@@ -93,7 +93,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-xs">
               <li>
                 <Link
                   href="#"
@@ -130,8 +130,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-8 pt-8 border-t px-4 border-border border-dotted flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} BetterSeo. All rights reserved.
           </p>
         </div>
