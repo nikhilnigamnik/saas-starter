@@ -82,14 +82,14 @@ export default function Page() {
         <div className="space-y-2">
           <Image
             src="/icon.png"
-            alt="BetterSeo"
+            alt="Saas Starter"
             width={30}
             height={30}
             className="hidden dark:block"
           />
           <Image
             src="/icon-dark.png"
-            alt="BetterSeo"
+            alt="Saas Starter"
             width={30}
             height={30}
             className="block dark:hidden"

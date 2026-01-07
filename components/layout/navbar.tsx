@@ -9,14 +9,14 @@ export function Navbar() {
         <Link href="/" className="flex items-center space-x-1">
           <Image
             src="/icon.png"
-            alt="BetterSeo"
+            alt="Saas Starter"
             width={20}
             height={20}
             className="hidden dark:block"
           />
           <Image
             src="/icon-dark.png"
-            alt="BetterSeo"
+            alt="Saas Starter"
             width={20}
             height={20}
             className="block dark:hidden"

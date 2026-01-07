@@ -16,21 +16,21 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'BetterSeo - SEO Analysis Tool',
-    template: '%s | BetterSeo',
+    default: 'Saas Starter - SEO Analysis Tool',
+    template: '%s | SaaS Starter',
   },
   description:
-    'BetterSeo is a SEO analysis tool that helps you analyze, track, and improve your search engine rankings with powerful tools and insights that drive real results.',
+    'Saas Starter is a SEO analysis tool that helps you analyze, track, and improve your search engine rankings with powerful tools and insights that drive real results.',
   keywords: ['SEO analysis', 'SEO tracking', 'SEO improvement', 'SEO tool'],
-  authors: [{ name: 'BetterSeo' }],
-  creator: 'BetterSeo',
-  publisher: 'BetterSeo',
+  authors: [{ name: 'Saas Starter' }],
+  creator: 'Saas Starter',
+  publisher: 'Saas Starter',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://better-seo.vercel.app'),
+  metadataBase: new URL('https://saas-starter.site'),
   alternates: {
     canonical: '/',
   },
@@ -38,31 +38,31 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    title: 'BetterSeo - SEO Analysis Tool',
+    title: 'Saas Starter - SEO Analysis Tool',
     description:
-      'BetterSeo is a SEO analysis tool that helps you analyze, track, and improve your search engine rankings with powerful tools and insights that drive real results.',
-    siteName: 'BetterSeo',
+      'Saas Starter is a SEO analysis tool that helps you analyze, track, and improve your search engine rankings with powerful tools and insights that drive real results.',
+    siteName: 'Saas Starter',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'BetterSeo - SEO Analysis Tool',
+        alt: 'Saas Starter - SEO Analysis Tool',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BetterSeo - SEO Analysis Tool',
+    title: 'Saas Starter - SEO Analysis Tool',
     description:
-      'BetterSeo is a SEO analysis tool that helps you analyze, track, and improve your search engine rankings with powerful tools and insights that drive real results.',
-    creator: '@betterseo',
+      'Saas Starter is a SEO analysis tool that helps you analyze, track, and improve your search engine rankings with powerful tools and insights that drive real results.',
+    creator: '@saasstarter',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'BetterSeo - SEO Analysis Tool',
+        alt: 'Saas Starter - SEO Analysis Tool',
       },
     ],
   },

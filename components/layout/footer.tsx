@@ -10,14 +10,14 @@ export function Footer() {
           <div className="space-y-4">
             <img
               src="/icon.png"
-              alt="BetterSeo"
+              alt="Saas Starter"
               width={30}
               height={30}
               className="hidden dark:block"
             />
             <img
               src="/icon-dark.png"
-              alt="BetterSeo"
+              alt="Saas Starter"
               width={30}
               height={30}
               className="block dark:hidden"
@@ -145,7 +145,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t px-4 border-border border-dotted flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} BetterSeo. All rights reserved.
+            © {new Date().getFullYear()} Saas Starter. All rights reserved.
           </p>
         </div>
       </div>

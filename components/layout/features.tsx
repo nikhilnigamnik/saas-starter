@@ -15,7 +15,7 @@ export function Features() {
     {
       title: 'API Access',
       description:
-        'Integrate BetterSeo into your workflow with our powerful REST API and webhooks.',
+        'Integrate Saas Starter into your workflow with our powerful REST API and webhooks.',
     },
     {
       title: 'Automated Reports',

@@ -11,7 +11,7 @@ export function Cta() {
             Ready to improve your <span className="text-brand">SEO rankings?</span>
           </h2>
           <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-            Join thousands of developers who are already using BetterSeo to optimize their search
+            Join thousands of developers who are already using Saas Starter to optimize their search
             engine performance.
           </p>
           <div className="flex items-center justify-center gap-4 pt-4">

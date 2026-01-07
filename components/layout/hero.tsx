@@ -12,7 +12,7 @@ export function Hero() {
           </h1>
 
           <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-            BetterSeo helps you analyze, track, and improve your search engine rankings with
+            Saas Starter helps you analyze, track, and improve your search engine rankings with
             powerful tools and insights that drive real results.
           </p>
 
