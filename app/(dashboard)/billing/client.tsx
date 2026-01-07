@@ -1,24 +1,57 @@
-import { auth } from '@/lib/auth';
+'use client';
+
 import { getUserUsage, getUserActiveSubscription } from '@/lib/queries/user';
-import { headers } from 'next/headers';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { UpgradeButton } from '@/components/ui/upgrade-button';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { useUser } from '@/context/user-context';
 
-export async function BillingPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+interface Subscription {
+  id: string;
+  name: string;
+  status: string;
+  amount: number;
+  currentPeriodStart: Date;
+  currentPeriodEnd: Date;
+  cancelAt: Date | null;
+  startAt: Date;
+  customerId: string;
+}
 
-  if (!session?.user) {
-    return <div>Please sign in to view your billing.</div>;
-  }
+interface Usage {
+  currentUsage: number;
+  usageLimit: number;
+  resetAt: Date | null;
+}
 
-  const [subscription, usage] = await Promise.all([
-    getUserActiveSubscription(session.user.id),
-    getUserUsage(session.user.id),
-  ]);
+export function BillingPage() {
+  const { session } = useUser();
+  const [subscription, setSubscription] = useState<Subscription | null>(null);
+  const [usage, setUsage] = useState<Usage | null>(null);
+
+  useEffect(() => {
+    async function fetchBillingData() {
+      if (!session?.user) {
+        return;
+      }
+
+      try {
+        const [subscriptionData, usageData] = await Promise.all([
+          getUserActiveSubscription(session.user.id),
+          getUserUsage(session.user.id),
+        ]);
+        setSubscription(subscriptionData as Subscription | null);
+        setUsage(usageData as Usage | null);
+      } catch (error) {
+        console.error('Failed to fetch billing data:', error);
+      } finally {
+      }
+    }
+
+    fetchBillingData();
+  }, [session]);
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-US', {
